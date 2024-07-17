@@ -110,7 +110,13 @@ def read_and_process_csv(filename='results.csv'):
             row[4] = full_scraped_data.get('phone', '')
             row[5] = full_scraped_data.get('web', '')
             row[6] = full_scraped_data.get('email', '')
-            row[7] = ', '.join(full_scraped_data.get('social_media_links', []))
+            
+            social_media_links = full_scraped_data.get('social_media_links', [])
+            if isinstance(social_media_links, list):
+                row[7] = ', '.join(social_media_links)
+            else:
+                row[7] = ''
+            
             row[8] = full_scraped_data.get('ceremonial', '')
             row[9] = full_scraped_data.get('shire', '')
             row[10] = full_scraped_data.get('local_authority', '')
